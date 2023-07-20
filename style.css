@@ -4,3 +4,48 @@ html {
 *, *::before, *::after {
     box-sizing: inherit;
 }
+
+
+.buttons {
+    display: flex;
+    flex-flow: column nowrap;
+}
+.buttons > div,
+.buttons > div > button {
+    display: flex;
+    flex-flow: row nowrap;
+    flex: 1 1 0;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.btn {
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 3px;
+    background-color: lightgray;
+    box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+    transition: all ease 0.4s;
+}
+
+.btn:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+}
+
+.operator {
+    background-color: orange;
+}
+
+.equals {
+    background-color: deepskyblue;
+}
+
+.clear {
+    background-color: gray;
+}
+
+.negate {
+    background-color: lightcoral;
+}
