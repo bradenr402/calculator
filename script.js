@@ -11,12 +11,13 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    return a / b;
+    if (b == 0) {
+        // alert( "I'm sorry, but I can't divide by zero. That would be like trying to divide by your IQ. It's just not possible." );
+        return 'ERROR';
+    } else {
+        return a / b;
+    }
 }
-
-let num1,
-    op,
-    num2;
 
 function operate([num1, op, num2]) {
     switch (op) {
@@ -31,10 +32,106 @@ function operate([num1, op, num2]) {
     }
 }
 
-const allButtons = document.querySelector('.all-buttons');
-const display = document.querySelector('.display');
+let num1,
+    op,
+    num2;
 
-allButtons.addEventListener('click', (e) => {
-    let keyValue = e.target.textContent;
-    display.textContent += keyValue;
+let equalPressed = 0;
+let operatorPressed = 0;
+let firstNumberDigits = 0;
+
+let buttonInput = document.querySelectorAll('.input-button');
+let operator = document.querySelectorAll('.operator');
+
+const display = document.getElementById('display');
+const equalButton = document.getElementById('equal');
+const clearButton = document.getElementById('clear');
+const delButton = document.getElementById('erase');
+
+const miniDisplay = document.getElementById('mini-display');
+
+window.onload = () => {
+    display.value = '';
+};
+
+buttonInput.forEach((buttonClass) => {
+    buttonClass.addEventListener('click', () => {
+        if (equalPressed === 1) {
+            // miniDisplay.value = '';
+            display.value = '';
+            equalPressed = 0;
+        }
+
+        if (display.value === '+' || display.value === '-' || display.value === '/' || display.value === '*') {
+            display.value = '';
+            miniDisplay.value = `${num1} ${op}`;
+        }
+
+        display.value += buttonClass.value;
+        if (!op && buttonClass.classList.contains('digit')) {
+            firstNumberDigits++;
+        }
+    });
 });
+
+operator.forEach((operatorClass) => {
+    operatorClass.addEventListener('click', () => {
+        if (operatorPressed === 1) {
+            num2 = display.value;
+            evaluate();
+            // num1 = display.value;
+            // display.value = num1;
+            // miniDisplay = num1;
+        }
+        num1 = display.value;
+        op = operatorClass.value;
+        display.value = op;
+        miniDisplay.value = num1;
+        operatorPressed = 1;
+    });
+});
+
+equalButton.addEventListener('click', () => {
+
+    num2 = display.value;
+    if (!(num1 == undefined) && !(op == undefined) && !(num2 === op)) {
+        evaluate();
+        equalPressed = 1;
+        operatorPressed = 0;
+
+    }
+});
+
+function evaluate() {
+    // equalPressed = 1;
+    // num2 = display.value;
+
+    let solution = operate([num1, op, num2]);
+
+    if (solution.toString().length >= 13) {
+        solution = solution.toFixed(12);
+    }
+
+    display.value = solution;
+
+    miniDisplay.value = `${num1} ${op} ${num2}`;
+}
+
+delButton.addEventListener('click', () => {
+    if (equalPressed === 1) {
+        clear();
+    } else {
+        display.value = display.value.slice(0, -1);
+    }
+});
+
+clearButton.addEventListener('click', clear);
+
+function clear() {
+    // equalPressed = 0;
+    // display.value = '';
+    // solution = null;
+
+    location.reload();
+
+}

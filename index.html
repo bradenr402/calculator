@@ -5,43 +5,39 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
         <script src="script.js" defer></script>
-        <title></title>
+        <title>Calculator</title>
     </head>
 
     <body>
         <div class="calculator">
-            <div class="display">0</div>
+            <div class="display">
+                <input type="text" placeholder="0" id="mini-display" disabled>
+                <input type="text" placeholder="0" id="display" disabled >
+            </div>
             <div class="all-buttons">
-                <!-- <div class="row1"> -->
-                    <button class="btn clear" id="clear"> C </button>
-                    <button class="btn clear clear-all" id="clear-all"> CE </button>
-                    <button class="btn negate" id="negate"> +/- </button>
-                    <button class="btn operator" id="divide"> / </button>
-                <!-- </div> -->
-                <!-- <div class="row2"> -->
-                    <button class="btn digit" id="7"> 7 </button>
-                    <button class="btn digit" id="8"> 8 </button>
-                    <button class="btn digit" id="9"> 9 </button>
-                    <button class="btn operator" id="multiply"> * </button>
-                <!-- </div> -->
-                <!-- <div class="row3"> -->
-                    <button class="btn digit" id="4"> 4 </button>
-                    <button class="btn digit" id="5"> 5 </button>
-                    <button class="btn digit" id="6"> 6 </button>
-                    <button class="btn operator" id="subtract"> - </button>
-                <!-- </div> -->
-                <!-- <div class="row4"> -->
-                    <button class="btn digit" id="1"> 1 </button>
-                    <button class="btn digit" id="2"> 2 </button>
-                    <button class="btn digit" id="3"> 3 </button>
-                    <button class="btn operator" id="add"> + </button>
-                <!-- </div> -->
-                <!-- <div class="row5"> -->
-                    <button class="btn decimal" id="decimal"> . </button>
-                    <button class="btn digit" id="0"> 0 </button>
-                    <button class="btn percent" id="percent"> % </button>
-                    <button class="btn equals" id="equals"> = </button>
-                <!-- </div> -->
+                <input type="button" value="C" id="clear" >
+                <input type="button" value="DEL" id="erase" >
+                <input type="button" value="/" class="operator" >
+                <input type="button" value="*" class="operator" >
+
+                <input type="button" value="7" class="input-button digit" >
+                <input type="button" value="8" class="input-button digit" >
+                <input type="button" value="9" class="input-button digit" >
+                <input type="button" value="-" class="operator" >
+
+                <input type="button" value="4" class="input-button digit" >
+                <input type="button" value="5" class="input-button digit" >
+                <input type="button" value="6" class="input-button digit" >
+                <input type="button" value="+" class="operator" >
+
+                <input type="button" value="1" class="input-button digit" >
+                <input type="button" value="2" class="input-button digit" >
+                <input type="button" value="3" class="input-button digit" >
+
+                <input type="button" value="=" id="equal" >
+                <input type="button" value="0" class="input-button digit" >
+                <input type="button" value="." class="input-button digit" >
+
         </div>
     </body>
 </html>
