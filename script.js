@@ -30,3 +30,11 @@ function operate([num1, op, num2]) {
             return divide(num1, num2);
     }
 }
+
+const allButtons = document.querySelector('.all-buttons');
+const display = document.querySelector('.display');
+
+allButtons.addEventListener('click', (e) => {
+    let keyValue = e.target.textContent;
+    display.textContent += keyValue;
+});
