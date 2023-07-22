@@ -12,7 +12,7 @@ input {
 .calculator {
     width: 400px;
     background-color: rgb(170, 190, 200);
-    padding: 50px 30px;
+    padding: 30px;
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -30,14 +30,14 @@ input {
     padding: 15px 10px;
     text-align: right;
     border: none;
-    font-size: 35px;
+    font-size: 40px;
     background-color: transparent;
     color: #fff;
     border-radius: 0.5rem;
 }
 
 #mini-display {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .display input::placeholder {
@@ -48,17 +48,25 @@ input {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .all-buttons input[type='button']  {
     font-size: 20px;
-    padding: 17px;
+    padding: 12px;
     border: none;
     background-color: transparent;
     color: #fff;
     cursor: pointer;
     border-radius: 5px;
+}
+
+.all-buttons input[type='button'].digit {
+    font-size: 24px;
+}
+.all-buttons input[type='button']#equal,
+.all-buttons input[type='button'].operator {
+    font-size: 26px;
 }
 
 input[type='button']#equal {

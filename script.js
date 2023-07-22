@@ -18,7 +18,7 @@ function divide(a, b) {
     }
 }
 
-function operate([num1, op, num2]) {
+function operate(num1, op, num2) {
     switch (op) {
         case '+':
             return add(num1, num2);
@@ -35,8 +35,9 @@ let num1,
     op,
     num2;
 
-let equalPressed = 0;
-let operatorPressed = 0;
+let equalPressed = 0,
+    operatorPressed = 0,
+    decimalPressed = 0;
 
 let buttonInput = document.querySelectorAll('.input-button');
 let operator = document.querySelectorAll('.operator');
@@ -58,14 +59,17 @@ buttonInput.forEach((buttonClass) => {
             equalPressed = 0;
         }
 
-        if (display.value === '+' || display.value === '-' || display.value === '/' || display.value === '*') {
+        if (display.value === op) {
             display.value = '';
             miniDisplay.value = `${num1} ${op}`;
         }
 
-        display.value += buttonClass.value;
-        if (!op && buttonClass.classList.contains('digit')) {
-            firstNumberDigits++;
+        if (decimalPressed === 0 || buttonClass.value !== '.') {
+            display.value += buttonClass.value;
+        }
+
+        if (buttonClass.value === '.') {
+            decimalPressed = 1;
         }
     });
 });
@@ -81,6 +85,7 @@ operator.forEach((operatorClass) => {
         display.value = op;
         miniDisplay.value = num1;
         operatorPressed = 1;
+        decimalPressed = 0;
     });
 });
 
@@ -90,12 +95,12 @@ equalButton.addEventListener('click', () => {
         evaluate();
         equalPressed = 1;
         operatorPressed = 0;
-
+        decimalPressed = 0;
     }
 });
 
 function evaluate() {
-    let solution = operate([num1, op, num2]);
+    let solution = parseFloat(operate(num1, op, num2));
 
     if (solution.toString().length >= 13) {
         solution = solution.toFixed(12);
