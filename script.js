@@ -100,7 +100,7 @@ equalButton.addEventListener('click', () => {
 });
 
 function evaluate() {
-    let solution = parseFloat(operate(num1, op, num2));
+    let solution = +operate(num1, op, num2);
 
     if (solution.toString().length >= 13) {
         solution = solution.toFixed(12);
