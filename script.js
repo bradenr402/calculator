@@ -12,7 +12,6 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if (b == 0) {
-        // alert( "I'm sorry, but I can't divide by zero. That would be like trying to divide by your IQ. It's just not possible." );
         return 'ERROR';
     } else {
         return a / b;
@@ -38,17 +37,15 @@ let num1,
 
 let equalPressed = 0;
 let operatorPressed = 0;
-let firstNumberDigits = 0;
 
 let buttonInput = document.querySelectorAll('.input-button');
 let operator = document.querySelectorAll('.operator');
 
+const miniDisplay = document.getElementById('mini-display');
 const display = document.getElementById('display');
 const equalButton = document.getElementById('equal');
 const clearButton = document.getElementById('clear');
 const delButton = document.getElementById('erase');
-
-const miniDisplay = document.getElementById('mini-display');
 
 window.onload = () => {
     display.value = '';
@@ -57,7 +54,6 @@ window.onload = () => {
 buttonInput.forEach((buttonClass) => {
     buttonClass.addEventListener('click', () => {
         if (equalPressed === 1) {
-            // miniDisplay.value = '';
             display.value = '';
             equalPressed = 0;
         }
@@ -79,9 +75,6 @@ operator.forEach((operatorClass) => {
         if (operatorPressed === 1) {
             num2 = display.value;
             evaluate();
-            // num1 = display.value;
-            // display.value = num1;
-            // miniDisplay = num1;
         }
         num1 = display.value;
         op = operatorClass.value;
@@ -92,7 +85,6 @@ operator.forEach((operatorClass) => {
 });
 
 equalButton.addEventListener('click', () => {
-
     num2 = display.value;
     if (!(num1 == undefined) && !(op == undefined) && !(num2 === op)) {
         evaluate();
@@ -103,9 +95,6 @@ equalButton.addEventListener('click', () => {
 });
 
 function evaluate() {
-    // equalPressed = 1;
-    // num2 = display.value;
-
     let solution = operate([num1, op, num2]);
 
     if (solution.toString().length >= 13) {
@@ -113,7 +102,6 @@ function evaluate() {
     }
 
     display.value = solution;
-
     miniDisplay.value = `${num1} ${op} ${num2}`;
 }
 
@@ -128,10 +116,5 @@ delButton.addEventListener('click', () => {
 clearButton.addEventListener('click', clear);
 
 function clear() {
-    // equalPressed = 0;
-    // display.value = '';
-    // solution = null;
-
     location.reload();
-
 }
