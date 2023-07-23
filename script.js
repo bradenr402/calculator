@@ -106,6 +106,9 @@ function evaluate() {
         solution = solution.toFixed(12);
     }
 
+    // Removes trailing zeros from number
+    solution = parseFloat(solution);
+
     display.value = solution;
     miniDisplay.value = `${num1} ${op} ${num2}`;
 }
