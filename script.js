@@ -115,7 +115,11 @@ operator.forEach((operatorClass) => {
 });
 
 equalButton.addEventListener('click', () => {
-    num2 = display.value;
+    if (equalPressed === 1) {
+        num1 = display.value;
+    } else {
+        num2 = display.value;
+    }
     if (!(num1 == undefined) && !(op == undefined) && !(num2 === op)) {
         evaluate();
         equalPressed = 1;
@@ -140,11 +144,7 @@ function evaluate() {
 }
 
 deleteButton.addEventListener('click', () => {
-    // if (equalPressed === 1) {
-        // clear();
-    // } else {
         display.value = display.value.slice(0, -1);
-    // }
 });
 
 clearButton.addEventListener('click', clear);
