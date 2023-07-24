@@ -11,6 +11,7 @@ input {
 
 .calculator {
     width: 400px;
+    height: auto;
     background-color: rgb(170, 190, 200);
     padding: 30px;
     position: absolute;
@@ -41,14 +42,14 @@ input {
 }
 
 .display input::placeholder {
-    color: #ffffff;
+    color: #fff;
     opacity: 50%;
 }
 
 .all-buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
+    grid-gap: 18px;
     margin-top: 30px;
 }
 
