@@ -18,6 +18,18 @@ function divide(a, b) {
     }
 }
 
+function power(a, b) {
+    return a ** b;
+}
+
+function sqrt(a) {
+    return a ** 0.5;
+}
+
+function remainder (a, b) {
+    return a % b;
+}
+
 function operate(num1, op, num2) {
     switch (op) {
         case '+':
@@ -28,6 +40,10 @@ function operate(num1, op, num2) {
             return multiply(num1, num2);
         case '/':
             return divide(num1, num2);
+        case '^':
+            return power(num1, num2);
+        case '\u221a':
+            return sqrt(num1);
     }
 }
 
@@ -46,7 +62,9 @@ const miniDisplay = document.getElementById('mini-display');
 const display = document.getElementById('display');
 const equalButton = document.getElementById('equal');
 const clearButton = document.getElementById('clear');
-const delButton = document.getElementById('erase');
+const deleteButton = document.getElementById('erase');
+const negateButton = document.getElementById('negate');
+const sqrtButton = document.getElementById('sqrt');
 
 window.onload = () => {
     display.value = '';
@@ -82,7 +100,6 @@ operator.forEach((operatorClass) => {
                 evaluate();
                 num1 = display.value;
             }
-
         } else {
             num1 = display.value;
             operatorPressed = 1;
@@ -91,7 +108,7 @@ operator.forEach((operatorClass) => {
         }
         op = operatorClass.value;
         display.value = op;
-            miniDisplay.value = num1;
+        miniDisplay.value = num1;
     });
 });
 
@@ -119,7 +136,7 @@ function evaluate() {
     miniDisplay.value = `${num1} ${op} ${num2}`;
 }
 
-delButton.addEventListener('click', () => {
+deleteButton.addEventListener('click', () => {
     if (equalPressed === 1) {
         clear();
     } else {
@@ -128,6 +145,24 @@ delButton.addEventListener('click', () => {
 });
 
 clearButton.addEventListener('click', clear);
+
+negateButton.addEventListener('click', () => {
+    if (!isNaN(display.value)) {
+        let currentValue = display.value;
+        let negatedValue = currentValue * -1;
+        display.value = negatedValue;
+    }
+});
+
+sqrtButton.addEventListener('click', () => {
+    if (!isNaN(display.value)) {
+        equalPressed = 1;
+        num1 = display.value;
+        display.value = sqrt(num1);
+        miniDisplay.value = `\u221a${num1}`;
+        
+    }
+});
 
 function clear() {
     location.reload();
@@ -139,6 +174,10 @@ document.addEventListener('keydown', (event) => {
         '-': 'subtract',
         'x': 'multiply',
         '/': 'divide',
+        '^': 'power',
+        'q': 'sqrt',
+        'Q': 'sqrt',
+        '%': 'remainder',
     }
 
     if (!isNaN(event.key) && event.key !== ' ') {
