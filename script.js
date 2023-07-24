@@ -77,15 +77,21 @@ buttonInput.forEach((buttonClass) => {
 operator.forEach((operatorClass) => {
     operatorClass.addEventListener('click', () => {
         if (operatorPressed === 1) {
-            num2 = display.value;
-            evaluate();
+            if (!isNaN(display.value)) {
+                num2 = display.value;
+                evaluate();
+                num1 = display.value;
+            }
+
+        } else {
+            num1 = display.value;
+            operatorPressed = 1;
+            decimalPressed = 0;
+
         }
-        num1 = display.value;
         op = operatorClass.value;
         display.value = op;
-        miniDisplay.value = num1;
-        operatorPressed = 1;
-        decimalPressed = 0;
+            miniDisplay.value = num1;
     });
 });
 
