@@ -68,6 +68,7 @@ const sqrtButton = document.getElementById('sqrt');
 
 window.onload = () => {
     display.value = '';
+    toggleClearDeleteButtons();
 };
 
 buttonInput.forEach((buttonClass) => {
@@ -89,6 +90,7 @@ buttonInput.forEach((buttonClass) => {
         if (buttonClass.value === '.') {
             decimalPressed = 1;
         }
+        toggleClearDeleteButtons();
     });
 });
 
@@ -120,6 +122,7 @@ equalButton.addEventListener('click', () => {
         operatorPressed = 0;
         decimalPressed = 0;
     }
+    toggleClearDeleteButtons();
 });
 
 function evaluate() {
@@ -137,11 +140,11 @@ function evaluate() {
 }
 
 deleteButton.addEventListener('click', () => {
-    if (equalPressed === 1) {
-        clear();
-    } else {
+    // if (equalPressed === 1) {
+        // clear();
+    // } else {
         display.value = display.value.slice(0, -1);
-    }
+    // }
 });
 
 clearButton.addEventListener('click', clear);
@@ -160,7 +163,7 @@ sqrtButton.addEventListener('click', () => {
         num1 = display.value;
         display.value = sqrt(num1);
         miniDisplay.value = `\u221a${num1}`;
-        
+
     }
 });
 
@@ -204,3 +207,13 @@ document.addEventListener('keydown', (event) => {
         document.getElementById('decimal').click();
     }
 });
+
+function toggleClearDeleteButtons() {
+    if (equalPressed === 1 || display.value === '') {
+        deleteButton.style.cssText = 'display: none;';
+        clearButton.style.cssText = 'grid-column: span 3;';
+    } else {
+        deleteButton.style.cssText = 'display: grid;';
+        clearButton.style.cssText = 'grid-column: span 2;';
+    }
+}
