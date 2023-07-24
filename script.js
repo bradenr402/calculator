@@ -24,7 +24,7 @@ function operate(num1, op, num2) {
             return add(num1, num2);
         case '-':
             return subtract(num1, num2);
-        case '*':
+        case 'x':
             return multiply(num1, num2);
         case '/':
             return divide(num1, num2);
@@ -126,3 +126,36 @@ clearButton.addEventListener('click', clear);
 function clear() {
     location.reload();
 }
+
+document.addEventListener('keydown', (event) => {
+    let getOperators = {
+        '+': 'add',
+        '-': 'subtract',
+        'x': 'multiply',
+        '/': 'divide',
+    }
+
+    if (!isNaN(event.key) && event.key !== ' ') {
+        document.getElementById(`digit-${event.key}`).click();
+    }
+
+    if (['/', 'x', '+', '-'].includes(event.key)) {
+        document.getElementById(getOperators[event.key]).click();
+    }
+
+    if (event.key === 'Backspace') {
+        document.getElementById('erase').click();
+    }
+
+    if (event.key === '=' || event.key === 'Enter') {
+        document.getElementById('equal').click();
+    }
+
+    if (event.key === 'c' || event.key === 'C') {
+        document.getElementById('clear').click();
+    }
+
+    if (event.key === '.') {
+        document.getElementById('decimal').click();
+    }
+});
