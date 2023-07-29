@@ -176,18 +176,18 @@ document.addEventListener('keydown', (event) => {
         '+': 'add',
         '-': 'subtract',
         'x': 'multiply',
+        '*': 'multiply',
         '/': 'divide',
         '^': 'power',
         'q': 'sqrt',
         'Q': 'sqrt',
-        '%': 'remainder',
     }
 
     if (!isNaN(event.key) && event.key !== ' ') {
         document.getElementById(`digit-${event.key}`).click();
     }
 
-    if (['/', 'x', '+', '-'].includes(event.key)) {
+    if (['/', 'x', '*', '+', '-', '^', 'q'].includes(event.key)) {
         document.getElementById(getOperators[event.key]).click();
     }
 
