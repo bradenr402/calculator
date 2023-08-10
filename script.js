@@ -179,15 +179,18 @@ document.addEventListener('keydown', (event) => {
         '*': 'multiply',
         '/': 'divide',
         '^': 'power',
+        'y': 'power',
+        'Y': 'power',
         'q': 'sqrt',
         'Q': 'sqrt',
+        '_': 'negate',
     }
 
     if (!isNaN(event.key) && event.key !== ' ') {
         document.getElementById(`digit-${event.key}`).click();
     }
 
-    if (['/', 'x', '*', '+', '-', '^', 'q'].includes(event.key)) {
+    if (['+', '-', 'x', '*', '/', '^', 'y', 'Y', 'q', 'Q', '_'].includes(event.key)) {
         document.getElementById(getOperators[event.key]).click();
     }
 
